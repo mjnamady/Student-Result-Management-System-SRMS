@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\backend\AdminController;
 use App\Http\Controllers\backend\ClassController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\backend\SubjectController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,8 +28,21 @@ Route::controller(ClassController::class)->group(function(){
     Route::get('create/class', 'CreateClass')->name('create.class');
     Route::post('store/class', 'StoreClass')->name('store.class');
     Route::get('manage/classes', 'ManageClasses')->name('manage.classes');
-    
+    Route::get('edit/class/{id}', 'EditClass')->name('edit.class');
+    Route::post('update/class', 'UpdateClass')->name('update.class');
+    Route::get('delete/class/{id}', 'DeleteClass')->name('delete.class');
 }); // END CLASS ALL ROUTES
+
+// SUBJECT ALL ROUTES
+Route::controller(SubjectController::class)->group(function(){
+    Route::get('create/subject', 'CreateSubject')->name('create.subject');
+    Route::post('store/subject', 'StoreSubject')->name('store.subject');
+    Route::get('manage/subjects', 'ManageSubject')->name('manage.subjects');
+    Route::get('edit/subject/{id}', 'EditSubject')->name('edit.subject');
+    Route::post('update/subject', 'UpdateSubject')->name('update.subject');
+    Route::get('delete/subject/{id}', 'DeleteSubject')->name('delete.subject');
+}); // END SUBJECT ALL ROUTES
+
 
 
 

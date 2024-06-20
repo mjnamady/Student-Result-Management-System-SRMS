@@ -29,8 +29,9 @@
 
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
+        {{-- jquery cdn  --}}
         <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+        
     </head>
 
     <body data-topbar="dark">
@@ -71,6 +72,7 @@
         <!-- Right bar overlay-->
         {{-- <div class="rightbar-overlay"></div> --}}
 
+        
         <!-- JAVASCRIPT -->
         <script src="{{asset('backend/assets/libs/jquery/jquery.min.js')}}"></script>
         <script src="{{asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -123,6 +125,49 @@
  }
  @endif 
 </script>
+
+    <!-- Required datatable js -->
+    <script src="{{asset('backend/assets/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('backend/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+   
+    <!-- Datatable init js -->
+    <script src="{{asset('backend/assets/js/pages/datatables.init.js')}}"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+<script>
+
+$(function(){
+    $(document).on('click','#delete',function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+
+  
+                  Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Delete This Data?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = link
+                      Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                      )
+                    }
+                  }) 
+    });
+
+  });
+</script>
+
     </body>
 
 </html>
