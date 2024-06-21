@@ -52,6 +52,19 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('create.subject') }}">Create Subject</a></li>
                         <li><a href="{{ route('manage.subjects') }}">Manage Subjects</a></li>
+                        <li><a href="{{ route('add.subject.combination') }}">Add Subject Combination</a></li>
+                        <li><a href="{{ route('manage.subject.combination') }}">Mamage Subject Combination</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-profile-line"></i>
+                        <span>Students</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('create.subject') }}">Add Student</a></li>
+                        <li><a href="{{ route('manage.subjects') }}">Manage Students</a></li>
                     </ul>
                 </li>
 

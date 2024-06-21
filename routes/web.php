@@ -41,6 +41,13 @@ Route::controller(SubjectController::class)->group(function(){
     Route::get('edit/subject/{id}', 'EditSubject')->name('edit.subject');
     Route::post('update/subject', 'UpdateSubject')->name('update.subject');
     Route::get('delete/subject/{id}', 'DeleteSubject')->name('delete.subject');
+
+    Route::get('add/subject/combination', 'AddSubjectCombination')->name('add.subject.combination');
+    Route::post('store/subject/combination', 'StoreSubjectCombination')->name('store.subject.combination');
+    Route::get('manage/subject/combination', 'ManageSubjectCombination')->name('manage.subject.combination');
+    Route::get('deactivate/subject/combination/{id}', 'DeactivateSubjectCombination')->name('deactivate.subject.combination');
+
+    
 }); // END SUBJECT ALL ROUTES
 
 

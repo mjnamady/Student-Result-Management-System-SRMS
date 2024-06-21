@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\backend;
 
-use App\Http\Controllers\Controller;
+use App\Models\Classes;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class SubjectController extends Controller
 {
@@ -58,6 +60,65 @@ class SubjectController extends Controller
         );
 
         return redirect()->route('manage.subjects')->with($notification);
+    } // End method
+
+
+    // SUBJECT COMBINATION ALL METHODS
+    public function AddSubjectCombination(){
+        $classes = Classes::all();
+        $subjects = Subject::all();
+        return view('backend.subject.add_subject_combination', compact('classes', 'subjects'));
+    } // End method
+
+    public function StoreSubjectCombination(Request $request){
+        // dd($request->all());
+        $class = Classes::findOrFail($request->input('class'));
+        $subjects = $request->input('subjects');
+        $class->subjects()->attach($subjects);
+        $notification = array(
+            'message' => 'Combination Done Successfully!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    } // End method
+
+    public function ManageSubjectCombination(){
+        $result = DB::table('classes_subject')
+                        ->join('classes', 'classes_subject.classes_id', 'classes.id')
+                        ->join('subjects', 'classes_subject.subject_id', 'subjects.id')
+                        ->select(
+                            'classes_subject.*',
+                            'classes.class_name',
+                            'classes.section',
+                            'subjects.subject_name'
+                            )
+                        ->get();
+        return view('backend.subject.manage_subject_combination', compact('result'));
+    } // End method
+
+    public function DeactivateSubjectCombination($id){
+        $status = DB::table('classes_subject')->select('status')->where('id', $id)->first();
+        // dd($status->status);
+        if($status->status == 1){
+            $status = 0;
+            DB::table('classes_subject')->where('id', $id)->update(['status'=>$status]);
+
+            $notification = array(
+                'message' => 'Subject De-activated Successfully!',
+                'alert-type' => 'success'
+            );
+        } elseif($status->status == 0){
+            $status = 1;
+            DB::table('classes_subject')->where('id', $id)->update(['status'=>$status]);
+
+            $notification = array(
+                'message' => 'Subject Activated Successfully!',
+                'alert-type' => 'success'
+            );
+        }
+
+        return redirect()->back()->with($notification);
     } // End method
 
 

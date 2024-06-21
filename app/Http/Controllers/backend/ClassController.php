@@ -21,10 +21,10 @@ class ClassController extends Controller
 
         $notification = array(
             'message' => 'Class Created Successfully!',
-            'alert-type' => 'success'
+            'alert-type' => 'info'
         );
 
-        return back()->with($notification);
+        return redirect()->route('manage.classes')->with($notification);
     } // End method
 
     public function ManageClasses(){
@@ -45,7 +45,7 @@ class ClassController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Class Updated Successfully!',
+            'message' => 'Class info Successfully!',
             'alert-type' => 'success'
         );
 
@@ -58,7 +58,7 @@ class ClassController extends Controller
 
         $notification = array(
             'message' => 'Class Deleted Successfully!',
-            'alert-type' => 'success'
+            'alert-type' => 'info'
         );
 
         return redirect()->back()->with($notification);
