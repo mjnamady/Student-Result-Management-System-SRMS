@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('roll_id')->nullable();
-            $table->integer('class')->nullable();
+            $table->integer('class_id')->nullable();
             $table->string('DOB')->nullable();
             $table->string('photo')->nullable();
             $table->string('gender')->nullable();
