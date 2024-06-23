@@ -80,7 +80,32 @@ class ResultController extends Controller
     } // End method
 
     public function UpdateResult(Request $request){
-        dd($request->all());
+        $sub_count = $request->input('subject_ids');
+        for ($i=0; $i < count($sub_count); $i++) { 
+            Result::where('id', $request->result_ids[$i])->update([
+                'subject_id' => $request->subject_ids[$i],
+                'marks' => $request->marks[$i],
+            ]);
+        }
+        
+        $nofication = array(
+            'message' => 'Result Updated Successfully!',
+            'alert-type' => 'info'
+        );
+        return redirect()->back()->with($nofication);
+    } // End method
+
+    public function DeleteResult($id){
+        $result = Result::where('student_id', $id)->get();
+        for ($i=0; $i < count($result); $i++) { 
+                $result[$i]->delete();
+        }
+
+        $nofication = array(
+            'message' => 'Result Delete Successfully!',
+            'alert-type' => 'info'
+        );
+        return redirect()->back()->with($nofication);
     } // End method
 
 }
