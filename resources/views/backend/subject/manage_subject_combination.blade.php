@@ -49,7 +49,7 @@
                                         <span class="badge bg-danger">Inactive </span>
                                     @endif
                                 </td>
-                                <td> 
+                                <td style="text-align:center; font-size:20px;"> 
                                     @if ($item->status == 1)
                                         <a href="{{ route('deactivate.subject.combination',[$item->id]) }}" style="color:#444; margin-right:20px"><i class="fas fa-check"></i></a>
                                     @else

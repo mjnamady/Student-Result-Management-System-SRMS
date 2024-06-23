@@ -5,12 +5,12 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0">Student Admission </h4>
+                <h4 class="mb-sm-0">Declare A Result </h4>
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Student</a></li>
-                        <li class="breadcrumb-item active"><a href="/dashboard">Create</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Declare</a></li>
+                        <li class="breadcrumb-item active"><a href="/dashboard">Result</a></li>
                     </ol>
                 </div>
 
@@ -22,31 +22,13 @@
 <div class="card">
     <div class="card-body">
 
-        <h4 class="card-title">Fill The Student Info</h4>
-        <form action="{{ route('store.student') }}" method="POST" enctype="multipart/form-data">
+        <h4 class="card-title">Declare Student Result</h4>
+        <form action="{{ route('store.result') }}" method="POST">
             @csrf
-        <div class="row mb-3">
-            <label for="example-text-input" class="col-sm-2 col-form-label">Full Name:</label>
-            <div class="col-sm-10">
-                <input class="form-control" name="full_name" type="text" required placeholder="Full Name" >
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label for="example-email-input" class="col-sm-2 col-form-label">Roll Id:</label>
-            <div class="col-sm-10">
-                <input class="form-control" name="roll_id" type="text" required placeholder="Roll Id" >
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label for="example-email-input" class="col-sm-2 col-form-label">Email:</label>
-            <div class="col-sm-10">
-                <input class="form-control" name="email" type="email" required placeholder="Email" >
-            </div>
-        </div>
         <div class="row mb-3">
             <label for="example-email-input" class="col-sm-2 col-form-label">Class:</label>
             <div class="col-sm-10">
-                <select name="class_id" class="form-select" aria-label="Default select example">
+                <select name="class_id" id="class_id" class="form-select dynamic" data-dependent="student">
                     <option selected="">-- Select a Class --</option>
                     @foreach ($classes as $class)
                         <option value="{{ $class->id }}">{{ $class->class_name }}</option>
@@ -54,42 +36,35 @@
                 </select>
             </div>
         </div>
-        <div class="row mb-3">
-            <label for="example-email-input" class="col-sm-2 col-form-label">Gender:</label>
-            <div class="col-sm-10">
-                    <input class="form-check-input" type="radio" name="gender" value="Male" checked="">
-                    <label class="form-check-label" for="formRadios1"> Male</label>
 
-                    <input class="form-check-input" type="radio" name="gender" value="Female">
-                    <label class="form-check-label" for="formRadios1"> Female</label>
-            </div>
-        </div>
         <div class="row mb-3">
-            <label for="example-email-input" class="col-sm-2 col-form-label">DOB:</label>
+            <label for="example-email-input" class="col-sm-2 col-form-label">Student Name:</label>
             <div class="col-sm-10">
-                <input class="form-control" type="date" name="dob" placeholder="mm/dd/yy" id="example-date-input">
+                <select name="student_id" class="form-select" id="student" aria-label="Default select example">
+                    <option selected="">--  --</option>
+                </select>
             </div>
         </div>
 
         <div class="row mb-3">
-            <label for="example-email-input" class="col-sm-2 col-form-label">Photo:</label>
-            <div class="col-sm-10">
-                <input class="form-control" type="file" name="photo" id="image">
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <label for="example-email-input" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <img id="showImage" src="{{ asset('uploads/no_image.jpg') }}" alt="avatar-5" class="rounded avatar-lg">
+            <label for="example-text-input" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10" id="alert">
                 
             </div>
         </div>
+    
+        <div class="row mb-3 sub">
+            <label for="example-text-input" class="col-sm-2 col-form-label">subjects:</label>
+            <div class="col-sm-10" id="showSubjects">
+            </div>
+        </div>
+       
+     
          
         <div class="row mb-3">
             {{-- <label for="example-search-input" class="col-sm-2 col-form-label"></label> --}}
             <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary waves-effect waves-light">Add Student</button>
+                <button type="submit" class="btn btn-primary waves-effect waves-light">Add Result</button>
             </div>
         </div>
        
@@ -98,16 +73,45 @@
 </div>
 
 <script>
+
     $(document).ready(function(){
-        $('#image').change(function(e){
-        var reader = new FileReader();
-        reader.onload = function(e){
-            $('#showImage').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(e.target.files['0']);
+
+        // Fetch Student Based on their Classes using jquery ajax request!
+        $('.sub').hide();
+        $('.dynamic').on('change', function(){
+            let class_id = $(this).val();
+            let dependent = $(this).data('dependent');
+            let _token = "{{csrf_token()}}";
+            $.ajax({
+                url: "{{ route('fetch.student') }}",
+                method: "GET",
+                dataType: "json",
+                data: {class_id:class_id, _token:_token},
+                success: function(result){
+                    $('#'+dependent).html(result.students);
+                    $('#showSubjects').html(result.subjects);
+                    $('.sub').show();
+                }
+            });
+        });
+
+        // Check wether a student result has been declared already using jquery ajax request!
+        $('#student').change(function(){
+            let student_id = $(this).val();
+            $.ajax({
+                url: "{{ route('check.student.result') }}",
+                method: "GET",
+                dataType: "json",
+                data: {_token:"{{csrf_token()}}", id:student_id},
+                success: function(data){
+                    $('#alert').html(data);
+                }
+            });
+        });
+
+
     });
-    
-    });
-    </script>
+
+</script>
 
 @endsection

@@ -45,7 +45,7 @@
                                 <td> {{ $subject->subject_code }} </td>
                                 <td> {{ $subject->created_at }} </td>
                                 <td> {{ $subject->updated_at }} </td>
-                                <td> 
+                                <td style="text-align:center; font-size:20px;"> 
                                     <a href="{{ route('edit.subject',[$subject->id]) }}" style="color:#444; margin-right:20px"><i class="far fa-edit"></i></a>
                                     <a href="{{ route('delete.subject',[$subject->id]) }}" style="color:#444" id="delete"><i class="fas fa-trash-alt"></i></a>
                                 </td>
