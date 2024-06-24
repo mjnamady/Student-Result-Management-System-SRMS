@@ -108,4 +108,9 @@ class ResultController extends Controller
         return redirect()->back()->with($nofication);
     } // End method
 
+    public function ViewResult($id){
+        $result = Result::where('student_id', $id)->get();
+        return view('backend.result.result_admin_view', compact('result'));
+    } // End method
+
 }
