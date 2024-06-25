@@ -24,7 +24,7 @@ class ClassController extends Controller
             'alert-type' => 'info'
         );
 
-        return redirect()->route('manage.classes')->with($notification);
+        return redirect()->back()->with($notification);
     } // End method
 
     public function ManageClasses(){

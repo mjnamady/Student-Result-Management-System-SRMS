@@ -113,4 +113,5 @@ class ResultController extends Controller
         return view('backend.result.result_admin_view', compact('result'));
     } // End method
 
+
 }

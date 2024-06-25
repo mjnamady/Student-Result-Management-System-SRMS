@@ -7,10 +7,10 @@ use App\Http\Controllers\backend\ClassController;
 use App\Http\Controllers\backend\SubjectController;
 use App\Http\Controllers\backend\StudentController;
 use App\Http\Controllers\backend\ResultController;
+use App\Http\Controllers\frontend\StudentResultController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [StudentResultController::class, 'index'])->name('index');
+Route::post('search/result', [StudentResultController::class, 'SearchResult'])->name('search.result');
 
 // ADMIN GROUP MIDDLEWARE....
 Route::middleware('auth')->group(function(){

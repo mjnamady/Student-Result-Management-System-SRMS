@@ -34,7 +34,7 @@
                             <th>Roll Id</th>
                             <th>Class</th>
                             <th>Reg Date</th>
-                            <th>View</th>
+                            {{-- <th>View</th> --}}
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -48,7 +48,7 @@
                                 <td> {{ $result->student->roll_id }} </td>
                                 <td> {{ optional($result->student->class)->class_name }} </td>
                                 <td> {{ $result->student->created_at }} </td>
-                                <td style="text-align:center; font-size:20px;"> <a href="{{ route('view.result', [$result->student->id]) }}" style="color:#444; margin-right:20px"><i class="fas fa-eye"></i></a> </td>
+                                {{-- <td style="text-align:center; font-size:20px;"> <a href="{{ route('view.result', [$result->student->id]) }}" style="color:#444; margin-right:20px" target="_blank"><i class="fas fa-eye"></i></a> </td> --}}
                                 <td style="text-align:center; font-size:20px;"> 
                                     <a href="{{ route('edit.result',[$result->student->id]) }}" style="color:#444; margin-right:20px"><i class="far fa-edit"></i></a>
                                     <a href="{{ route('delete.result',[$result->student->id]) }}" style="color:#444" id="delete"><i class="fas fa-trash-alt"></i></a>

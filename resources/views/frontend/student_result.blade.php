@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('backend/assets/images/favicon.ico')}}">
-    <title>SRMS | Student Result Management System</title>
+    <title>Result</title>
     <style>
         body {
             background-color: #f0f2f5; /* Light gray background color for the page */
@@ -69,6 +69,17 @@
         .btn:hover {
             background-color: #0056b3;
         }
+
+        .back {
+            width: 600px;
+            margin: 10px auto;
+        }
+
+        .back a {
+            color: #222;
+            font-family: arial;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -119,11 +130,7 @@
             </table>
         </div>
     </div>
-    <script>
-        // function downloadResult() {
-        //     alert("Downloading Result...");
-        //     // You can add your download logic here
-        // }
-    </script>
+    <div class="back"><a href="/">Back To Home</a></div>
+    
 </body>
 </html>

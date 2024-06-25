@@ -10,7 +10,7 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Declare</a></li>
-                        <li class="breadcrumb-item active"><a href="/dashboard">Result</a></li>
+                        <li class="breadcrumb-item active">Result</li>
                     </ol>
                 </div>
 

@@ -9,8 +9,8 @@
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">classes</a></li>
-                        <li class="breadcrumb-item active"><a href="/dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Manage</a></li>
+                        <li class="breadcrumb-item active">Classes</li>
                     </ol>
                 </div>
 

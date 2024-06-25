@@ -29,14 +29,15 @@
 
                         <div class="text-center mt-4">
                             <div class="mb-3">
-                                <a href="index.html" class="auth-logo">
+                                {{-- <a href="index.html" class="auth-logo">
                                     <img src="{{asset('backend/assets/images/logo-dark.png')}}" height="30" class="logo-dark mx-auto" alt="">
                                     <img src="{{asset('backend/assets/images/logo-light.png')}}" height="30" class="logo-light mx-auto" alt="">
-                                </a>
+                                </a> --}}
+                                <h1 class="text-muted text-center"><b>(SRMS) </b></h1>
                             </div>
                         </div>
     
-                        <h4 class="text-muted text-center font-size-18"><b>Sign In</b></h4>
+                        <h4 class="text-muted text-center font-size-18"><b>Admin Sign In</b></h4>
     
                         <div class="p-3">
                             <form class="form-horizontal mt-3" method="POST" action="{{ route('login') }}">

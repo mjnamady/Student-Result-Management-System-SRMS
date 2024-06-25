@@ -25,7 +25,7 @@ class SubjectController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect()->route('manage.subjects')->with($notification);
+        return redirect()->back()->with($notification);
     } // End method
 
     public function ManageSubject(){

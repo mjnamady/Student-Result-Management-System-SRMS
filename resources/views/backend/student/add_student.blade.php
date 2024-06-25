@@ -49,7 +49,7 @@
                 <select name="class_id" class="form-select" aria-label="Default select example">
                     <option selected="">-- Select a Class --</option>
                     @foreach ($classes as $class)
-                        <option value="{{ $class->id }}">{{ $class->class_name }}</option>
+                        <option value="{{ $class->id }}">{{ $class->class_name }} ({{ $class->section }})</option>
                     @endforeach
                 </select>
             </div>
