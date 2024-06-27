@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Classes;
 use App\Models\User;
 use App\Models\Result;
+use App\Models\Student;
 use Illuminate\Support\Facades\Redis;
 
 class ResultController extends Controller
@@ -18,7 +19,7 @@ class ResultController extends Controller
 
     public function FetchStudent(Request $request){
        $class_id = $request->input('class_id');
-       $students = User::where('class_id', $class_id)->get();
+       $students = Student::where('class_id', $class_id)->get();
        $std_data = '<option value="">--Select a Student--</option>';
        foreach($students as $student){
             $std_data .= '<option value="'.$student->id.'">'.$student->name.' | '.$student->roll_id.'</option>';

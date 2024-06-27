@@ -17,13 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('roll_id')->nullable();
-            $table->integer('class_id')->nullable();
-            $table->string('DOB')->nullable();
             $table->string('photo')->nullable();
-            $table->string('gender')->nullable();
-            $table->enum('role',['admin','student'])->default('student');
-            $table->enum('status',['active','inactive'])->default('active');
             $table->rememberToken();
             $table->timestamps();
         });

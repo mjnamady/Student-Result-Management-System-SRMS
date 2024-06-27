@@ -2,7 +2,7 @@
 @section('admin')
 
 @php
-    $totalStudents = count(App\Models\User::where('role', 'student')->get());
+    $totalStudents = count(App\Models\Student::get());
     $totalSubject = count(App\Models\Subject::all());
     $totalClasses = count(App\Models\Classes::all());
     $totalResult = count(App\Models\Result::groupBy('student_id')->get());

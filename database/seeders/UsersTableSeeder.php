@@ -19,14 +19,15 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'admin',
                 'email' => 'admin@gmail.com',
-                'role' => 'admin',
                 'password' => Hash::make('111')
-            ],
+            ]
+        ]);
+
+        DB::table('students')->insert([
+            // Admin
             [
-                'name' => 'student', 
+                'name' => 'Student',
                 'email' => 'student@gmail.com',
-                'role' => 'student',
-                'password' => Hash::make('111')
             ]
         ]);
     }

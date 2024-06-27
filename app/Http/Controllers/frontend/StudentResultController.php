@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Models\User;
+use App\Models\Result;
 use App\Models\Classes;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Result;
 
 class StudentResultController extends Controller
 {
@@ -19,7 +19,7 @@ class StudentResultController extends Controller
     public function SearchResult(Request $request){
         $roll_id = $request->input('roll_id');
         $class_id = $request->input('class_id');
-        $student = User::where('roll_id', $roll_id)->where('class_id', $class_id)->first();
+        $student = Student::where('roll_id', $roll_id)->where('class_id', $class_id)->first();
 
         if(!$student){
             $notification = array(
