@@ -26,14 +26,26 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
-        $request->session()->regenerate();
 
-        $notification = array(
-            'message' => 'Admin Login Successfully!',
-            'alert-type' => 'success'
-        );
+        if($request->user()->role === 'admin'){
+            $request->session()->regenerate();
 
+            $notification = array(
+                'message' => 'Admin Login Successfully!',
+                'alert-type' => 'success'
+            );
         return redirect()->intended(route('dashboard', absolute: false))->with($notification);
+        
+        } elseif($request->user()->role === 'student'){
+            $notification = array(
+                'message' => 'Sorry! You are not an Admin',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+
+
+        
     }
 
     /**
