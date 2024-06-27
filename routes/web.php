@@ -13,7 +13,7 @@ Route::get('/', [StudentResultController::class, 'index'])->name('index');
 Route::post('search/result', [StudentResultController::class, 'SearchResult'])->name('search.result');
 
 // ADMIN GROUP MIDDLEWARE....
-Route::middleware('auth')->group(function(){
+Route::middleware(['auth'])->group(function(){
 
 Route::get('/dashboard', function () {
     return view('admin.index');
