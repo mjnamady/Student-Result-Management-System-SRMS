@@ -28,7 +28,7 @@
         <div class="row mb-3">
             <label for="example-text-input" class="col-sm-2 col-form-label">Old Password</label>
             <div class="col-sm-10">
-                <input class="form-control @error('old_password') is-invalid @enderror" name="old_password" type="text" placeholder="Old Password" >
+                <input class="form-control @error('old_password') is-invalid @enderror" name="old_password" type="password" placeholder="Old Password" >
                 @error('old_password')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -38,7 +38,7 @@
         <div class="row mb-3">
             <label for="example-text-input" class="col-sm-2 col-form-label">New Password</label>
             <div class="col-sm-10">
-                <input class="form-control @error('new_password') is-invalid @enderror" name="new_password" type="text" placeholder="New Password" >
+                <input class="form-control @error('new_password') is-invalid @enderror" name="new_password" type="password" placeholder="New Password" >
                 @error('new_password')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -48,7 +48,7 @@
         <div class="row mb-3">
             <label for="example-text-input" class="col-sm-2 col-form-label">Confirm Password</label>
             <div class="col-sm-10">
-                <input class="form-control" name="new_password_confirmation" type="text" placeholder="Confirm Password" >
+                <input class="form-control" name="new_password_confirmation" type="password" placeholder="Confirm Password" >
             </div>
         </div>
 
